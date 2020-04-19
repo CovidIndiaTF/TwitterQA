@@ -4,10 +4,18 @@ import { Twitter } from '../botLogic'
 
 const twitter = new Twitter(process.env.consumer_key, process.env.consumer_secret, process.env.access_token, process.env.access_token_secret)
 
-const run = async () => {
+const streamTweets = async () => {
   console.log('test')
   const tweets = await twitter.getTweet('corona')
-  console.log('tweets', tweets)
+
+  tweets.on('tweet', (tweet) => {
+    console.log(tweet)
+  })
 }
 
-run()
+//streamTweets()
+
+
+const test = async () => {
+  const reply = await twitter.replyToTweet(tweetId, referencedAuthorScreenName, text)
+}

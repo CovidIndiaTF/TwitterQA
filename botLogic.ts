@@ -23,12 +23,27 @@ export class Twitter {
   }
 
   async getTweet(hashtag){
-    let tweet = new Promise((resolve, reject) => {
-      this.twitter.get('search/tweets', { q: hashtag }, (err, data, response) => {
-        resolve(data)
-      })
-    })
 
-    return await tweet;
+    // let tweet = new Promise((resolve, reject) => {
+    //   this.twitter.stream('statuses/filter', { track: hashtag }, (err, data, response) => {
+    //     resolve(data)
+    //   })
+    // })
+
+    let stream = this.twitter.stream('statuses/filter', { track: hashtag })
+    return stream
+  }
+
+  async replyToTweet(tweetId, referencedAuthorScreenName, text){
+    var res = {
+      in_reply_to_status_id: '' + tweet.id_str,
+      status: referencedAuthorScreenName + text
+    };
+
+    let reply = new Promise((resolve, reject) => {
+      this.twitter.post('statuses/update', res, (err, data, response) => {
+        resolve(data)
+      });
+    })
   }
 }
