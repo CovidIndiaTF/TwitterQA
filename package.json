@@ -1,9 +1,31 @@
 {
+  "name": "twitterqa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "dependencies": {
-    "@types/node": "^13.13.0",
     "airtable": "^0.8.1",
     "dotenv": "^8.2.0",
     "node-cron": "^2.0.3",
     "twit": "^2.2.11"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.0",
+    "ts-node": "^8.9.0",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "start": "ts-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CovidIndiaTF/TwitterQA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CovidIndiaTF/TwitterQA/issues"
+  },
+  "homepage": "https://github.com/CovidIndiaTF/TwitterQA#readme"
 }

@@ -2,12 +2,12 @@
   "compilerOptions": {
     "module": "commonjs",
     "baseUrl": ".",
-    "target": "es6",
+    "target": "es5",
     "types": [
       "node"
     ],
     "noImplicitAny": false,
-    "sourceMap": false,
+    "sourceMap": true,
     "lib": [
       "es5",
       "es6",
@@ -15,22 +15,19 @@
       "es2017",
       "dom"
     ],
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowJs": true,
+    // "allowJs": true,
     "jsx": "react",
     "outDir": "dist"
   },
-  "include": [
-    "server"
-  ],
+  "include": ["src"],
   "exclude": [
     "**/*test.tsx",
+    "**/node_modules/**/*",
+    "client/node_modules",
     "node_modules",
-    "dist",
+    "build",
     "config",
-    "scripts",
-    "electron",
     "release"
   ]
 }

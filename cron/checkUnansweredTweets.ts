@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const Airtable = require('airtable');
-const base = new Airtable({apiKey: process.env.airtable_key}).base('appzo9fDle7O3x6GE')
+const base = new Airtable({ apiKey: process.env.airtable_key }).base('appzo9fDle7O3x6GE')
 
 export const unansweredTweets = async () => {
   base('Expert Content').select({
