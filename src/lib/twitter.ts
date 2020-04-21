@@ -1,4 +1,4 @@
-const Twit = require('twit')
+import * as Twit from 'twit'
 
 
 class Twitter {
@@ -6,8 +6,7 @@ class Twitter {
   consumer_secret: string
   access_token: string
   access_token_secret:string
-
-  twitter:any
+  twitter: Twit
 
   constructor (consumer_key, consumer_secret, access_token, access_token_secret) {
     this.consumer_key = consumer_key
@@ -30,24 +29,25 @@ class Twitter {
     //   })
     // })
 
+    console.log('streaming hashtag', hashtag)
     return this.twitter.stream('statuses/filter', { track: hashtag })
   }
 
 
-  async replyToTweet (tweetId, referencedAuthorScreenName, text) {
+  async replyToTweet (tweetId: string, username: string, text: string) {
     const body = {
-      in_reply_to_status_id: '' + tweetId,
-      status: referencedAuthorScreenName + text
+      in_reply_to_status_id: tweetId,
+      status: `@${username} ${text}`
     }
 
-    const reply = new Promise((resolve, reject) => {
+    console.log(body)
+
+    return new Promise((resolve, reject) => {
       this.twitter.post('statuses/update', body, (err, data) => {
         if (err) reject(err)
         else resolve(data)
       })
     })
-
-    console.log(reply)
   }
 }
 

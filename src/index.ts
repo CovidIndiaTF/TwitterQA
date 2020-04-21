@@ -1,36 +1,41 @@
-import Twitter from "./lib/twitter"
+import Twitter from './lib/twitter'
 import Airtable from './lib/airtables'
+import checkUnansweredTweets from './checkUnansweredTweets'
+import * as cron from 'node-cron'
 
 
-export default async () => {
-  const tweets = await Twitter.getTweet('corona')
 
-  tweets.on('tweet', (tweet) => {
-    const tweetId = tweet.id
-    const tweetText = tweet.text
-    const userId = tweet.user.id
+const job = async () => {
+  // Cron script to post the responses
+  cron.schedule('*/10 * * * * *', checkUnansweredTweets)
+
+  // Stream #AskCovidIndia
+  const tweets = await Twitter.getTweet('#AskCovidIndiaTF')
+  tweets.on('tweet', tweet => {
+    const tweetId = tweet.id_str
+    const tweetText = tweet.extended_tweet ? tweet.extended_tweet.full_text : tweet.text
+    const userFollowers = tweet.user.followers_count
     const userName = tweet.user.name
     const userScreenName = tweet.user.screen_name
 
+    if (tweet.retweeted) return
+    if (tweet.is_quote_status || tweet.retweeted_status) return
+
+    console.log(tweet)
+
     const fields = {
-      fields: {
-        "Tweet Copy": tweetText,
-        "Tweet URL": `http://twitter.com/web/tweet/${tweetId}`,
-        "Tweet Author Name": userName,
-        "Author Followers Count": 100,
-        "Tweet Author Handle": userScreenName,
-        "Question Header": tweetText
-      }
+      'Author Followers Count': userFollowers,
+      'Tweet Author Handle': userScreenName,
+      'Tweet Author Name': userName,
+      'Tweet Copy': tweetText,
+      'Tweet Id': tweetId,
+      'Tweet URL': `https://twitter.com/${userScreenName}/status/${tweetId}`,
     }
 
-    Airtable('TweetQuestions').create([fields])
+    // console.log(tweet)
 
-    // Airtable('Expert Content').create([fields], (err, records) => {
-    //   console.error(records, err)
-    //   if (err) return
-    //   // records.forEach(record => console.log(record.getId()))
-    // })
-
-    // console.log(tweetId, tweetText, userId, userName, userScreenName)
+    Airtable('TweetQuestions').create([{ fields }])
   })
 }
+
+job()

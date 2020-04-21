@@ -1,4 +1,4 @@
-const Airtable = require('airtable')
+import * as Airtable from 'airtable'
 
 const instance = new Airtable({
     apiKey: process.env.airtable_key
