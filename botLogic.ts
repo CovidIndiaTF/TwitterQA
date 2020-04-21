@@ -36,7 +36,7 @@ export class Twitter {
 
   async replyToTweet(tweetId, referencedAuthorScreenName, text){
     var res = {
-      in_reply_to_status_id: '' + tweet.id_str,
+      in_reply_to_status_id: '' + tweetId,
       status: referencedAuthorScreenName + text
     };
 

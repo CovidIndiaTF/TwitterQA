@@ -5,7 +5,7 @@ import { Twitter } from '../botLogic'
 const twitter = new Twitter(process.env.consumer_key, process.env.consumer_secret, process.env.access_token, process.env.access_token_secret)
 
 const streamTweets = async () => {
-  console.log('test')
+  console.log('bot sagar test')
   const tweets = await twitter.getTweet('corona')
 
   tweets.on('tweet', (tweet) => {
