@@ -36,7 +36,7 @@ export default async () => {
 
         const link = `https://ask.covidindiataskforce.org/?id=${record.id}`
         await Twitter.replyToTweet(
-          t.id,
+          t.id_str,
           'covidindiaNTF',
           'If the answer was satisfactory, please like, retweet and follow us 🙂.' +
           ' You can see your question and ' +
