@@ -1,22 +1,58 @@
 $(document).ready(function(){
-    $.ajax({
-        url: "https://api.airtable.com/v0/appzo9fDle7O3x6GE/Expert%20Content?maxRecords=10&view=All%20QA",
-        type: "GET",
-        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer keyGIC1jLWJNtVnFA');},
-        success: function(result) {
-            result.records.forEach(function(value, index, array){
-                var id = value.id;
-                var question = value.fields["Question Header"];
-                var answer = value.fields["Answer Text"] == undefined ? "" : value.fields["Answer Text"];
+    var questionId = getUrlVars()["id"];
+    if(questionId == undefined)
+    {
+        $.ajax({
+            url: "https://api.airtable.com/v0/appzo9fDle7O3x6GE/Expert%20Content?maxRecords=10&view=All%20QA",
+            type: "GET",
+            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer keyGIC1jLWJNtVnFA');},
+            success: function(result) {
+                result.records.forEach(function(value, index, array){
+                    var id = value.id;
+                    var question = value.fields["Question Header"];
+                    var answer = value.fields["Answer Text"] == undefined ? "" : value.fields["Answer Text"];
+                    AddQuestion(id, question, answer);
+                })
+    
+                $(".interview_question").click(function(){
+                    $(this).find(".interview_question-answer").toggle();
+                });
+            }
+         });
+    }
+    else
+    {
+        $.ajax({
+            url: "https://api.airtable.com/v0/appzo9fDle7O3x6GE/Expert%20Content/" + questionId,
+            type: "GET",
+            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer keyGIC1jLWJNtVnFA');},
+            success: function(result) {
+                var id = result.id;
+                var question = result.fields["Question Header"];
+                var answer = result.fields["Answer Text"] == undefined ? "" : result.fields["Answer Text"];
                 AddQuestion(id, question, answer);
-            })
-
-            $(".interview_question").click(function(){
-                $(this).find(".interview_question-answer").toggle();
-            });
-        }
-     });
+                $(".interview_question-answer").toggle();
+    
+                $(".interview_question").click(function(){
+                    $(this).find(".interview_question-answer").toggle();
+                });
+            }
+         });
+    }
 })
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
 
 function AddQuestion(id, question, answer)
 {
