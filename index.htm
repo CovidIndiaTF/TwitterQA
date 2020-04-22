@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="layout-wrapper">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>COVID-19 (SARS CoV-2) Questions and Answers</title>
+    <meta property="og:title" content="Essential COVID-19 (SARS CoV-2) Questions and Answers">
+    <meta name="twitter:card" content="summary_large_image">
+    <script>
+        //<![CDATA[
+        /*! modernizr 3.6.0 (Custom Build) | MIT *
+         * https://modernizr.com/download/?-cssgradients-csspositionsticky-csstransforms-csstransitions-flexbox-flexboxlegacy-flexboxtweener-flexwrap-history-input-localstorage-objectfit-rgba-prefixed-setclasses !*/
+        ! function(e, t, n) {
+            function r(e, t) {
+                return typeof e === t
+            }
+
+            function o() {
+                var e, t, n, o, i, s, a;
+                for (var l in x)
+                    if (x.hasOwnProperty(l)) {
+                        if (e = [], t = x[l], t.name && (e.push(t.name.toLowerCase()), t.options && t.options.aliases && t.options.aliases.length))
+                            for (n = 0; n < t.options.aliases.length; n++) e.push(t.options.aliases[n].toLowerCase());
+                        for (o = r(t.fn, "function") ? t.fn() : t.fn, i = 0; i < e.length; i++) s = e[i], a = s.split("."), 1 === a.length ? Modernizr[a[0]] = o : (!Modernizr[a[0]] || Modernizr[a[0]] instanceof Boolean || (Modernizr[a[0]] = new Boolean(Modernizr[a[0]])), Modernizr[a[0]][a[1]] = o), C.push((o ? "" : "no-") + a.join("-"))
+                    }
+            }
+
+            function i(e) {
+                var t = w.className,
+                    n = Modernizr._config.classPrefix || "";
+                if (S && (t = t.baseVal), Modernizr._config.enableJSClass) {
+                    var r = new RegExp("(^|\\s)" + n + "no-js(\\s|$)");
+                    t = t.replace(r, "$1" + n + "js$2")
+                }
+                Modernizr._config.enableClasses && (t += " " + n + e.join(" " + n), S ? w.className.baseVal = t : w.className = t)
+            }
+
+            function s(e, t) {
+                return !!~("" + e).indexOf(t)
+            }
+
+            function a() {
+                return "function" != typeof t.createElement ? t.createElement(arguments[0]) : S ? t.createElementNS.call(t, "http://www.w3.org/2000/svg", arguments[0]) : t.createElement.apply(t, arguments)
+            }
+
+            function l() {
+                var e = t.body;
+                return e || (e = a(S ? "svg" : "body"), e.fake = !0), e
+            }
+
+            function f(e, n, r, o) {
+                var i, s, f, u, d = "modernizr",
+                    c = a("div"),
+                    p = l();
+                if (parseInt(r, 10))
+                    for (; r--;) f = a("div"), f.id = o ? o[r] : d + (r + 1), c.appendChild(f);
+                return i = a("style"), i.type = "text/css", i.id = "s" + d, (p.fake ? p : c).appendChild(i), p.appendChild(c), i.styleSheet ? i.styleSheet.cssText = e : i.appendChild(t.createTextNode(e)), c.id = d, p.fake && (p.style.background = "", p.style.overflow = "hidden", u = w.style.overflow, w.style.overflow = "hidden", w.appendChild(p)), s = n(c, e), p.fake ? (p.parentNode.removeChild(p), w.style.overflow = u, w.offsetHeight) : c.parentNode.removeChild(c), !!s
+            }
+
+            function u(e) {
+                return e.replace(/([A-Z])/g, function(e, t) {
+                    return "-" + t.toLowerCase()
+                }).replace(/^ms-/, "-ms-")
+            }
+
+            function d(t, n, r) {
+                var o;
+                if ("getComputedStyle" in e) {
+                    o = getComputedStyle.call(e, t, n);
+                    var i = e.console;
+                    if (null !== o) r && (o = o.getPropertyValue(r));
+                    else if (i) {
+                        var s = i.error ? "error" : "log";
+                        i[s].call(i, "getComputedStyle returning null, its possible modernizr test results are inaccurate")
+                    }
+                } else o = !n && t.currentStyle && t.currentStyle[r];
+                return o
+            }
+
+            function c(t, r) {
+                var o = t.length;
+                if ("CSS" in e && "supports" in e.CSS) {
+                    for (; o--;)
+                        if (e.CSS.supports(u(t[o]), r)) return !0;
+                    return !1
+                }
+                if ("CSSSupportsRule" in e) {
+                    for (var i = []; o--;) i.push("(" + u(t[o]) + ":" + r + ")");
+                    return i = i.join(" or "), f("@supports (" + i + ") { #modernizr { position: absolute; } }", function(e) {
+                        return "absolute" == d(e, null, "position")
+                    })
+                }
+                return n
+            }
+
+            function p(e) {
+                return e.replace(/([a-z])-([a-z])/g, function(e, t, n) {
+                    return t + n.toUpperCase()
+                }).replace(/^-/, "")
+            }
+
+            function g(e, t, o, i) {
+                function l() {
+                    u && (delete k.style, delete k.modElem)
+                }
+                if (i = r(i, "undefined") ? !1 : i, !r(o, "undefined")) {
+                    var f = c(e, o);
+                    if (!r(f, "undefined")) return f
+                }
+                for (var u, d, g, m, v, h = ["modernizr", "tspan", "samp"]; !k.style && h.length;) u = !0, k.modElem = a(h.shift()), k.style = k.modElem.style;
+                for (g = e.length, d = 0; g > d; d++)
+                    if (m = e[d], v = k.style[m], s(m, "-") && (m = p(m)), k.style[m] !== n) {
+                        if (i || r(o, "undefined")) return l(), "pfx" == t ? m : !0;
+                        try {
+                            k.style[m] = o
+                        } catch (y) {}
+                        if (k.style[m] != v) return l(), "pfx" == t ? m : !0
+                    }
+                return l(), !1
+            }
+
+            function m(e, t) {
+                return function() {
+                    return e.apply(t, arguments)
+                }
+            }
+
+            function v(e, t, n) {
+                var o;
+                for (var i in e)
+                    if (e[i] in t) return n === !1 ? e[i] : (o = t[e[i]], r(o, "function") ? m(o, n || t) : o);
+                return !1
+            }
+
+            function h(e, t, n, o, i) {
+                var s = e.charAt(0).toUpperCase() + e.slice(1),
+                    a = (e + " " + T.join(s + " ") + s).split(" ");
+                return r(t, "string") || r(t, "undefined") ? g(a, t, o, i) : (a = (e + " " + P.join(s + " ") + s).split(" "), v(a, t, n))
+            }
+
+            function y(e, t, r) {
+                return h(e, n, n, t, r)
+            }
+            var x = [],
+                b = {
+                    _version: "3.6.0",
+                    _config: {
+                        classPrefix: "",
+                        enableClasses: !0,
+                        enableJSClass: !0,
+                        usePrefixes: !0
+                    },
+                    _q: [],
+                    on: function(e, t) {
+                        var n = this;
+                        setTimeout(function() {
+                            t(n[e])
+                        }, 0)
+                    },
+                    addTest: function(e, t, n) {
+                        x.push({
+                            name: e,
+                            fn: t,
+                            options: n
+                        })
+                    },
+                    addAsyncTest: function(e) {
+                        x.push({
+                            name: null,
+                            fn: e
+                        })
+                    }
+                },
+                Modernizr = function() {};
+            Modernizr.prototype = b, Modernizr = new Modernizr;
+            var C = [],
+                w = t.documentElement,
+                S = "svg" === w.nodeName.toLowerCase(),
+                _ = "Moz O ms Webkit",
+                T = b._config.usePrefixes ? _.split(" ") : [];
+            b._cssomPrefixes = T;
+            var O = {
+                elem: a("modernizr")
+            };
+            Modernizr._q.push(function() {
+                delete O.elem
+            });
+            var k = {
+                style: O.elem.style
+            };
+            Modernizr._q.unshift(function() {
+                delete k.style
+            });
+            var P = b._config.usePrefixes ? _.toLowerCase().split(" ") : [];
+            b._domPrefixes = P, b.testAllProps = h;
+            var z = function(t) {
+                var r, o = E.length,
+                    i = e.CSSRule;
+                if ("undefined" == typeof i) return n;
+                if (!t) return !1;
+                if (t = t.replace(/^@/, ""), r = t.replace(/-/g, "_").toUpperCase() + "_RULE", r in i) return "@" + t;
+                for (var s = 0; o > s; s++) {
+                    var a = E[s],
+                        l = a.toUpperCase() + "_" + r;
+                    if (l in i) return "@-" + a.toLowerCase() + "-" + t
+                }
+                return !1
+            };
+            b.atRule = z;
+            var A = b.prefixed = function(e, t, n) {
+                return 0 === e.indexOf("@") ? z(e) : (-1 != e.indexOf("-") && (e = p(e)), t ? h(e, t, n) : h(e, "pfx"))
+            };
+            b.testAllProps = y, Modernizr.addTest("flexbox", y("flexBasis", "1px", !0)), Modernizr.addTest("flexboxlegacy", y("boxDirection", "reverse", !0)), Modernizr.addTest("flexboxtweener", y("flexAlign", "end", !0)), Modernizr.addTest("flexwrap", y("flexWrap", "wrap", !0));
+            var E = b._config.usePrefixes ? " -webkit- -moz- -o- -ms- ".split(" ") : ["", ""];
+            b._prefixes = E, Modernizr.addTest("cssgradients", function() {
+                for (var e, t = "background-image:", n = "gradient(linear,left top,right bottom,from(#9f9),to(white));", r = "", o = 0, i = E.length - 1; i > o; o++) e = 0 === o ? "to " : "", r += t + E[o] + "linear-gradient(" + e + "left top, #9f9, white);";
+                Modernizr._config.usePrefixes && (r += t + "-webkit-" + n);
+                var s = a("a"),
+                    l = s.style;
+                return l.cssText = r, ("" + l.backgroundImage).indexOf("gradient") > -1
+            }), Modernizr.addTest("objectfit", !!A("objectFit"), {
+                aliases: ["object-fit"]
+            }), Modernizr.addTest("csspositionsticky", function() {
+                var e = "position:",
+                    t = "sticky",
+                    n = a("a"),
+                    r = n.style;
+                return r.cssText = e + E.join(t + ";" + e).slice(0, -e.length), -1 !== r.position.indexOf(t)
+            }), Modernizr.addTest("rgba", function() {
+                var e = a("a").style;
+                return e.cssText = "background-color:rgba(150,255,150,.5)", ("" + e.backgroundColor).indexOf("rgba") > -1
+            }), Modernizr.addTest("csstransforms", function() {
+                return -1 === navigator.userAgent.indexOf("Android 2.") && y("transform", "scale(1)", !0)
+            }), Modernizr.addTest("csstransitions", y("transition", "all", !0)), Modernizr.addTest("history", function() {
+                var t = navigator.userAgent;
+                return -1 === t.indexOf("Android 2.") && -1 === t.indexOf("Android 4.0") || -1 === t.indexOf("Mobile Safari") || -1 !== t.indexOf("Chrome") || -1 !== t.indexOf("Windows Phone") || "file:" === location.protocol ? e.history && "pushState" in e.history : !1
+            });
+            var j = a("input"),
+                L = "autocomplete autofocus list placeholder max min multiple pattern required step".split(" "),
+                N = {};
+            Modernizr.input = function(t) {
+                for (var n = 0, r = t.length; r > n; n++) N[t[n]] = !!(t[n] in j);
+                return N.list && (N.list = !(!a("datalist") || !e.HTMLDataListElement)), N
+            }(L), Modernizr.addTest("localstorage", function() {
+                var e = "modernizr";
+                try {
+                    return localStorage.setItem(e, e), localStorage.removeItem(e), !0
+                } catch (t) {
+                    return !1
+                }
+            }), o(), i(C), delete b.addTest, delete b.addAsyncTest;
+            for (var q = 0; q < Modernizr._q.length; q++) Modernizr._q[q]();
+            e.Modernizr = Modernizr
+        }(window, document);
+
+        //]]>
+    </script>
+    <script>
+        // Disable no-flexbox for pages that mix legacy styles supporting
+        // no-flexbox(no longer supported) and the new CSS approach
+        var isIE, isIE11, noFlexboxClassName
+        isIE = /MSIE/.test(navigator.userAgent) && !/Opera/.test(navigator.userAgent)
+        isIE11 = window.MSInputMethodContext && !/\bEdge\/[0-9.]+$/.test(navigator.userAgent)
+        if (window.Modernizr && window.Modernizr.flexbox && (isIE || isIE11)) {
+            noFlexboxClassName = document.documentElement.className.replace(/\bflexbox\b/, 'no-flexbox ie-flexbox')
+            document.documentElement.className = noFlexboxClassName
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+	<link rel="stylesheet" media="screen" href="content/css/style.css" />
+</head>
+
+<body class="layout" data-view="layout#body" id="top">
+    <div class="layout_layer" data-view="layout#layout">
+        <header class="page_header hide_in_webview" data-role="fixed-header">
+            <div class="page_header_line"></div>
+            <div class="page_header" data-view="layout#menu">
+                <div class="page_header_top-wrapper">
+                    <div class="page_header_top">
+                        <div class="page_header_top-logotype_wrapper">
+                            <div class="page_header_top-logotype">
+								<a class="logo is-big is-link for-vertical" href="https://www.toptal.com/designers">
+									<span class="logo-emblem">
+									</span>
+									<span class="vertical-title" title="Toptal Designers: Hire Designers from the Top 3%">COVID-19 India</span>
+								</a>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="layout-main">
+            <header class="page_title-wrapper">
+                <div class="page_title has-free_height">
+                    <div class="page_title-container">
+                        <h1 class="page_title-title">COVID-19 India Essential Questions and Answers&nbsp;</h1>
+                        <div class="page_title-description"></div>
+                        <div class="page_title-links">
+                            <div class="page_title-bottom is-vertical is-medium">
+                                <div class="page_title-bottom_item"><a class="button is-green_candy is-big is-uppercased has-arrow ask-question-button" onclick="window.open('https://www.twitter.com/intent/tweet?text=%23AskCovidIndiaTF ', 'twitter-tweet-dialog', 'width=626,height=436'); return false;" href="#"><span class="button-text is-bigger_longer_and_uncut">Ask Question</span><span class="button-text is-short">Ask Question</span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <section class="interview_questions_list">
+                <div class="interview_questions_list-inner">
+                    <!--Sample Question-->
+                    <!--<div class="interview_question" data-view="ui#toggle" id="question-317">
+                        <div class="interview_question-question" data-role="trigger"><img alt="question badge" class="interview_question-badge" src="content/images/question_badge_bc30c7.png" />
+                            <div class="interview_question-content for-question content_body" data-view="shared#content_body">
+                                <p>#AskCovidIndiaTF Will the lockdown be extended for more than 3rd of May?</p>
+                            </div>
+                            <div class="interview_question-question_footer"><a class="interview_question-view_link">View the answer →</a><a class="interview_question-hide_link">Hide answer</a>
+                                <div class="interview_question-share_links" data-text="Essential UI Interview Questions" data-title="Toptal UI Interview Questions" data-url="questions#question-317" data-view="shared#social_share">
+                                    <a class="interview_question-share_link is-facebook" data-role="link" data-track-click="SocialShareButtonClicked" data-track-default-data="{&quot;network&quot;:&quot;facebook&quot;}" data-type="facebook"></a>
+                                    <a class="interview_question-share_link is-twitter" data-role="link" data-track-click="SocialShareButtonClicked" data-track-default-data="{&quot;network&quot;:&quot;twitter&quot;}" data-type="twitter"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interview_question-answer" data-view="shared#content_body"><img alt="answer badge" class="interview_question-badge" src="content/images/answer_badge_dc4c6f.png" />
+                            <div class="interview_question-content content_body is-small">
+                                <p>We don't really know for sure; However there might be some restrictions. We should wait for the official government announcement.</p>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--End of Sample Question-->
+                </div>
+            </section>
+        </main>
+        <footer class="hide_in_webview page_footer_wrapper">
+            <section class="page_footer_legal-wrapper">
+                <div class="page_footer_legal is-wide">
+                    <div class="page_footer_legal-logotype">
+                        <a class="logo is-mini is-link for-footer" href="https://www.covid19india.org/">
+                        </a>
+                    </div>
+                    <ul class="page_footer_legal-links">
+                        <li class="page_footer_legal-links_item is-copyright">
+                            <p class="page_footer_legal-copyright">© Copyright 2020</p>
+                        </li>
+                        <li class="page_footer_legal-links_item has-right_margin"><a class="page_footer_legal-link" href="#" rel="nofollow">Privacy Policy</a></li>
+                        <li class="page_footer_legal-links_item"><a class="page_footer_legal-link" href="#" rel="nofollow">Website Terms</a></li>
+                    </ul>
+                </div>
+            </section>
+        </footer>
+    </div>
+    <script>
+        setTimeout(function() {
+            classNameWithFont = document.documentElement.className + ' wf-active'
+            document.documentElement.className = classNameWithFont
+        }, 0);
+    </script>
+</body>
+</html>
