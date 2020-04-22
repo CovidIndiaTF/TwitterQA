@@ -5,17 +5,17 @@ $(document).ready(function(){
     if(questionId == undefined)
     {
         $.ajax({
-            url: "https://api.airtable.com/v0/appzo9fDle7O3x6GE/Expert%20Content?maxRecords=10&view=All%20QA",
+            url: "https://api.airtable.com/v0/appzo9fDle7O3x6GE/TweetQuestions?maxRecords=10&view=Answered%20Questions",
             type: "GET",
             beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer keyGIC1jLWJNtVnFA');},
             success: function(result) {
                 result.records.forEach(function(value, index, array){
                     var id = value.id;
-                    var question = value.fields["Question Header"];
-                    var answer = value.fields["Answer Text"] == undefined ? "" : value.fields["Answer Text"];
+                    var question = value.fields["Tweet Copy"].replace(/#AskCovidIndiaTF/ig, '');
+                    var answer = value.fields["Tweet Response"] == undefined ? "" : value.fields["Tweet Response"];
                     AddQuestion(id, question, answer);
                 })
-    
+
                 $(".interview_question").click(function(){
                     $(this).find(".interview_question-answer").toggle();
                 });
@@ -25,16 +25,16 @@ $(document).ready(function(){
     else
     {
         $.ajax({
-            url: "https://api.airtable.com/v0/appzo9fDle7O3x6GE/Expert%20Content/" + questionId,
+            url: "https://api.airtable.com/v0/appzo9fDle7O3x6GE/TweetQuestions/" + questionId,
             type: "GET",
             beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer keyGIC1jLWJNtVnFA');},
             success: function(result) {
                 var id = result.id;
-                var question = result.fields["Question Header"];
-                var answer = result.fields["Answer Text"] == undefined ? "" : result.fields["Answer Text"];
+                var question = result.fields["Tweet Copy"].replace(/#AskCovidIndiaTF/ig, '');
+                var answer = result.fields["Tweet Response"] == undefined ? "" : result.fields["Tweet Response"];
                 AddQuestion(id, question, answer);
                 $(".interview_question-answer").toggle();
-    
+
                 $(".interview_question").click(function(){
                     $(this).find(".interview_question-answer").toggle();
                 });
@@ -76,6 +76,6 @@ function AddQuestion(id, question, answer)
     qnahtml += '</div>';
     qnahtml += '</div>';
     qnahtml += '</div>';
-    
+
     $(".interview_questions_list-inner").append(qnahtml);
 }
