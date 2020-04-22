@@ -23,12 +23,6 @@ class Twitter {
   }
 
   async getTweet(hashtag) {
-    // let tweet = new Promise((resolve, reject) => {
-    //   this.twitter.stream('statuses/filter', { track: hashtag }, (err, data, response) => {
-    //     resolve(data)
-    //   })
-    // })
-
     console.log('streaming hashtag', hashtag)
     return this.twitter.stream('statuses/filter', { track: hashtag })
   }

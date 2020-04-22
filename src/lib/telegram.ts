@@ -12,7 +12,7 @@ class Telegram {
     const options = {
       method: 'POST',
       uri: `${this._baseUrl}/sendMessage`,
-      body: { chat_id, text },
+      body: { chat_id, text, disable_web_page_preview: true },
       json: true
     }
 

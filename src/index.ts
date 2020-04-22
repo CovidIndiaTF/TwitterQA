@@ -13,7 +13,7 @@ const job = async () => {
 
   // Stream #AskCovidIndia
   const tweets = await Twitter.getTweet('#AskCovidIndiaTF')
-  tweets.on('tweet', tweet => {
+  tweets.on('tweet', async tweet => {
     const tweetId = tweet.id_str
     const tweetText = tweet.extended_tweet ? tweet.extended_tweet.full_text : tweet.text
     const userFollowers = tweet.user.followers_count
@@ -22,8 +22,6 @@ const job = async () => {
 
     if (tweet.retweeted) return
     if (tweet.is_quote_status || tweet.retweeted_status) return
-
-    // console.log(tweet)
 
     const url = `https://twitter.com/${userScreenName}/status/${tweetId}`
     const fields = {
@@ -36,14 +34,13 @@ const job = async () => {
     }
 
     // inform the telegram group
-    Telegram.sendMessage(
-      '-492340375',
-      `New tweet: @${userScreenName} (${userFollowers} followers)\n` +
-      `URL: ${url}\n` +
+    console.log(fields)
+    await Telegram.sendMessage(
+      '-1001385686385',
+      `New tweet: ${userScreenName} (${userFollowers} followers)\n` +
+      `URL: ${url}\n\n` +
       `Text: ${tweetText}`
     )
-
-    console.log(tweet)
 
     Airtable('TweetQuestions').create([{ fields }])
   })
