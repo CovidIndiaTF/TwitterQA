@@ -21,4 +21,4 @@ class Telegram {
 }
 
 
-export default new Telegram('1135855154:AAGMf76rhvYDYPRuVlDyC1WKl3qKNbUdN5o')
+export default new Telegram('1280955627:AAF9sU_ZutvHoQ01NOD-SJhGRpE5fTR5BGY')
