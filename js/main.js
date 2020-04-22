@@ -10,6 +10,10 @@ $(document).ready(function(){
                 var answer = value.fields["Answer Text"] == undefined ? "" : value.fields["Answer Text"];
                 AddQuestion(id, question, answer);
             })
+
+            $(".interview_question").click(function(){
+                $(this).find(".interview_question-answer").toggle();
+            });
         }
      });
 })
@@ -30,7 +34,7 @@ function AddQuestion(id, question, answer)
     qnahtml += '</div>';
     qnahtml += '<div class="interview_question-answer" data-view="shared#content_body"><img alt="answer badge" class="interview_question-badge" src="content/images/answer_badge_dc4c6f.png" />';
     qnahtml += '<div class="interview_question-content content_body is-small">';
-    qnahtml += '<p' + answer + '</p>';
+    qnahtml += '<p>' + answer + '</p>';
     qnahtml += '</div>';
     qnahtml += '</div>';
     qnahtml += '</div>';
