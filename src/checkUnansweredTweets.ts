@@ -33,7 +33,7 @@ export default async () => {
           record.fields['Tweet Response'],
         )
 
-        const link = `http://ask.covidindiataskforce.org/?id=${record.id}`
+        const link = `https://ask.covidindiataskforce.org/?id=${record.id}`
         await Twitter.replyToTweet(
           record.fields['Tweet Id'],
           record.fields['Tweet Author Handle'],
