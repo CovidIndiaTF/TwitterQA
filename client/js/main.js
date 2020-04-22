@@ -28,8 +28,8 @@ $(document).ready(function(){
             type: "GET",
             success: function(result) {
                 var id = result.id;
-                var question = result.fields["Tweet Copy"].replace(/#AskCovidIndiaTF/ig, '');
-                var answer = result.fields["Tweet Response"] == undefined ? "" : result.fields["Tweet Response"];
+                var question = result["Tweet Copy"].replace(/#AskCovidIndiaTF/ig, '');
+                var answer = result["Tweet Response"] == undefined ? "" : result["Tweet Response"];
                 AddQuestion(id, question, answer);
                 $(".interview_question-answer").toggle();
 
