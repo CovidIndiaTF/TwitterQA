@@ -1,4 +1,5 @@
 import Twitter from './lib/twitter'
+import Telegram from './lib/telegram'
 import Airtable from './lib/airtables'
 import checkUnansweredTweets from './checkUnansweredTweets'
 import * as cron from 'node-cron'
@@ -22,18 +23,27 @@ const job = async () => {
     if (tweet.retweeted) return
     if (tweet.is_quote_status || tweet.retweeted_status) return
 
-    console.log(tweet)
+    // console.log(tweet)
 
+    const url = `https://twitter.com/${userScreenName}/status/${tweetId}`
     const fields = {
       'Author Followers Count': userFollowers,
       'Tweet Author Handle': userScreenName,
       'Tweet Author Name': userName,
       'Tweet Copy': tweetText,
       'Tweet Id': tweetId,
-      'Tweet URL': `https://twitter.com/${userScreenName}/status/${tweetId}`,
+      'Tweet URL': url,
     }
 
-    // console.log(tweet)
+    // inform the telegram group
+    Telegram.sendMessage(
+      '-492340375',
+      `New tweet: @${userScreenName} (${userFollowers} followers)\n` +
+      `URL: ${url}\n` +
+      `Text: ${tweetText}`
+    )
+
+    console.log(tweet)
 
     Airtable('TweetQuestions').create([{ fields }])
   })

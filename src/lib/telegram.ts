@@ -1,24 +1,24 @@
 import * as rp from 'request-promise'
 
-export default class Telegram {
-    private _baseUrl
 
-    constructor(accessToken) {
-        this._baseUrl = `https://api.telegram.org/bot${accessToken}`
+class Telegram {
+  private _baseUrl
+
+  constructor (accessToken) {
+    this._baseUrl = `https://api.telegram.org/bot${accessToken}`
+  }
+
+  async sendMessage(chat_id: string, text: string): Promise<any> {
+    const options = {
+      method: 'POST',
+      uri: `${this._baseUrl}/sendMessage`,
+      body: { chat_id, text },
+      json: true
     }
 
-    async sendMessage(chat_id: string, text: string): Promise<any> {
-        const options = {
-            method: 'POST',
-            uri: `${this._baseUrl}/sendMessage`,
-            body: {
-                chat_id,
-                text
-            },
-            json: true
-        }
-
-        return rp(options);
-    }
+    return rp(options);
+  }
 }
 
+
+export default new Telegram('1135855154:AAGMf76rhvYDYPRuVlDyC1WKl3qKNbUdN5o')
