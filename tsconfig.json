@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "baseUrl": ".",
+    "target": "es5",
+    "types": [
+      "node"
+    ],
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "lib": [
+      "es5",
+      "es6",
+      "es2016",
+      "es2017",
+      "dom"
+    ],
+    "experimentalDecorators": true,
+    // "allowJs": true,
+    "jsx": "react",
+    "outDir": "dist"
+  },
+  "include": ["src", "server.js"],
+  "exclude": [
+    "**/*test.tsx",
+    "**/node_modules/**/*",
+    "client/node_modules",
+    "node_modules",
+    "build",
+    "config",
+    "release"
+  ]
+}

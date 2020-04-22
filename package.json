@@ -3,8 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "airtable": "^0.8.1",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "node-cron": "^2.0.3",
+    "oauth": "^0.9.15",
+    "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "@types/airtable": "^0.5.7",
+    "@types/bluebird": "^3.5.30",
+    "@types/node": "^13.13.0",
+    "@types/twit": "^2.2.24",
+    "ts-node": "^8.9.0",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.8.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,9 +35,5 @@
   "bugs": {
     "url": "https://github.com/CovidIndiaTF/TwitterQA/issues"
   },
-  "homepage": "https://github.com/CovidIndiaTF/TwitterQA#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "path": "^0.12.7"
-  }
+  "homepage": "https://github.com/CovidIndiaTF/TwitterQA#readme"
 }
