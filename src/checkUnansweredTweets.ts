@@ -26,6 +26,7 @@ export default async () => {
       Bluebird.mapSeries(records, async record => {
         console.log('posting tweet response for', record.id)
         if (!record.fields['Tweet Author Handle']) return
+        if (!record.fields['Tweet Response']) return
 
         const t: any = await Twitter.replyToTweet(
           record.fields['Tweet Id'],
@@ -35,8 +36,8 @@ export default async () => {
 
         const link = `https://ask.covidindiataskforce.org/?id=${record.id}`
         await Twitter.replyToTweet(
-          record.fields['Tweet Id'],
-          record.fields['Tweet Author Handle'],
+          t.id,
+          'covidindiatf',
           'If the answer was satisfactory, please like, retweet and follow us 🙂.' +
           ' You can see your question and ' +
           `more like it over here ${link}. Let us fight this pandemic together!`
