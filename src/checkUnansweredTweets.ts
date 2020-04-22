@@ -37,9 +37,9 @@ export default async () => {
         await Twitter.replyToTweet(
           record.fields['Tweet Id'],
           record.fields['Tweet Author Handle'],
-          'If the answer was satisfactory, I\'d request if you could please like, retweet and follow us 🙂.' +
+          'If the answer was satisfactory, please like, retweet and follow us 🙂.' +
           ' You can see your question and ' +
-          `more like it over here ${link}. Let us help fight this pandemic together!`
+          `more like it over here ${link}. Let us fight this pandemic together!`
         )
 
         recordsToUpdate.push([record.id, t.id_str])
