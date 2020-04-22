@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-<<<<<<< HEAD
   "dependencies": {
     "airtable": "^0.8.1",
     "bluebird": "^3.7.2",
@@ -26,10 +25,6 @@
   },
   "scripts": {
     "start": "ts-node index.js"
-=======
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
->>>>>>> 5e009e30bb9e11282d8ff3cb0b09459b306d39dc
   },
   "repository": {
     "type": "git",
@@ -40,13 +35,5 @@
   "bugs": {
     "url": "https://github.com/CovidIndiaTF/TwitterQA/issues"
   },
-<<<<<<< HEAD
   "homepage": "https://github.com/CovidIndiaTF/TwitterQA#readme"
-=======
-  "homepage": "https://github.com/CovidIndiaTF/TwitterQA#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "path": "^0.12.7"
-  }
->>>>>>> 5e009e30bb9e11282d8ff3cb0b09459b306d39dc
 }

@@ -20,7 +20,7 @@
     "jsx": "react",
     "outDir": "dist"
   },
-  "include": ["src"],
+  "include": ["src", "server.js"],
   "exclude": [
     "**/*test.tsx",
     "**/node_modules/**/*",
