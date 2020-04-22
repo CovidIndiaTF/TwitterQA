@@ -25,6 +25,8 @@ export default async () => {
       // iterate through every record
       Bluebird.mapSeries(records, async record => {
         console.log('posting tweet response for', record.id)
+        if (!record.fields['Tweet Author Handle']) return
+
         const t: any = await Twitter.replyToTweet(
           record.fields['Tweet Id'],
           record.fields['Tweet Author Handle'],
