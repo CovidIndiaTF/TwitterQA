@@ -66,7 +66,7 @@ function AddQuestion(id, question, answer)
     qnahtml += '<div class="interview_question-question_footer"><a class="interview_question-view_link">View the answer →</a><a class="interview_question-hide_link">Hide answer</a>';
     qnahtml += '<div class="interview_question-share_links" data-text="Essential UI Interview Questions" data-title="Toptal UI Interview Questions" data-url="questions#question-' + id + '" data-view="shared#social_share">';
     qnahtml += '<a class="interview_question-share_link is-facebook" onclick="window.open(\'https://www.facebook.com/sharer/sharer.php?u='+baseUrl + '?id='+id + '\', \'facebook-share-dialog\', \'width=626,height=436\'); return false;" data-type="facebook"></a>';
-    qnahtml += '<a class="interview_question-share_link is-twitter" onclick="window.open(\'https://www.twitter.com/intent/tweet?text='+baseUrl + '?id='+id + '\', \'facebook-share-dialog\', \'width=626,height=436\'); return false;" data-type="twitter"></a>';
+    qnahtml += '<a class="interview_question-share_link is-twitter" onclick="window.open(\'https://www.twitter.com/intent/tweet?text='+baseUrl + '?id='+id + '\', \'twitter-tweet-dialog\', \'width=626,height=436\'); return false;" data-type="twitter"></a>';
     qnahtml += '</div>';
     qnahtml += '</div>';
     qnahtml += '</div>';
