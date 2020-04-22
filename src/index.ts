@@ -38,9 +38,9 @@ const job = async () => {
     await Telegram.sendMessage(
       '-1001385686385',
       `New tweet: ${userScreenName} (${userFollowers} followers)\n` +
-      `URL: ${url}\n\n` +
+      `URL: ${url}\n` +
       `Text: ${tweetText}`
-    )
+    ).catch(console.log)
 
     Airtable('TweetQuestions').create([{ fields }])
   })
