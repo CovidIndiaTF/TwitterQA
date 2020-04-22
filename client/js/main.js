@@ -1,18 +1,17 @@
-var baseUrl = "http://ask.covidindiataskforce.org/index.htm";
+var baseUrl = "https://ask.covidindiataskforce.org";
 
 $(document).ready(function(){
     var questionId = getUrlVars()["id"];
     if(questionId == undefined)
     {
         $.ajax({
-            url: "https://api.airtable.com/v0/appzo9fDle7O3x6GE/TweetQuestions?maxRecords=10&view=Answered%20Questions",
+            url: "/questions",
             type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer keyGIC1jLWJNtVnFA');},
             success: function(result) {
-                result.records.forEach(function(value, index, array){
+                result.forEach(function(value){
                     var id = value.id;
-                    var question = value.fields["Tweet Copy"].replace(/#AskCovidIndiaTF/ig, '');
-                    var answer = value.fields["Tweet Response"] == undefined ? "" : value.fields["Tweet Response"];
+                    var question = value["Tweet Copy"].replace(/#AskCovidIndiaTF/ig, '');
+                    var answer = value["Tweet Response"] == undefined ? "" : value["Tweet Response"];
                     AddQuestion(id, question, answer);
                 })
 
@@ -25,9 +24,8 @@ $(document).ready(function(){
     else
     {
         $.ajax({
-            url: "https://api.airtable.com/v0/appzo9fDle7O3x6GE/TweetQuestions/" + questionId,
+            url: "/questions/" + questionId,
             type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer keyGIC1jLWJNtVnFA');},
             success: function(result) {
                 var id = result.id;
                 var question = result.fields["Tweet Copy"].replace(/#AskCovidIndiaTF/ig, '');

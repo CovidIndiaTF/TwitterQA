@@ -3,6 +3,7 @@ import Airtable from './lib/airtables'
 import checkUnansweredTweets from './checkUnansweredTweets'
 import * as cron from 'node-cron'
 
+import './server'
 
 
 const job = async () => {
