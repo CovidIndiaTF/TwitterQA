@@ -4,7 +4,6 @@ import checkUnansweredTweets from './checkUnansweredTweets'
 import * as cron from 'node-cron'
 
 
-
 const job = async () => {
   // Cron script to post the responses
   cron.schedule('*/10 * * * * *', checkUnansweredTweets)
@@ -17,6 +16,7 @@ const job = async () => {
     const userFollowers = tweet.user.followers_count
     const userName = tweet.user.name
     const userScreenName = tweet.user.screen_name
+    const createdAt = tweet.created_at
 
     if (tweet.retweeted) return
     if (tweet.is_quote_status || tweet.retweeted_status) return
@@ -30,9 +30,11 @@ const job = async () => {
       'Tweet Copy': tweetText,
       'Tweet Id': tweetId,
       'Tweet URL': `https://twitter.com/${userScreenName}/status/${tweetId}`,
+      'Tweet creation': createdAt
     }
 
-    // console.log(tweet)
+    console.log(tweet)
+
 
     Airtable('TweetQuestions').create([{ fields }])
   })
