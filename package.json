@@ -16,7 +16,8 @@
     "oauth": "^0.9.15",
     "request-promise": "^4.2.5",
     "socket.io": "^2.3.0",
-    "twit": "^2.2.11"
+    "twit": "^2.2.11",
+    "underscore": "^1.10.2"
   },
   "devDependencies": {
     "@types/airtable": "^0.5.7",

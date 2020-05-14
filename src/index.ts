@@ -4,6 +4,7 @@ import Airtable from './lib/airtables'
 import checkUnansweredTweets from './checkUnansweredTweets'
 import * as cron from 'node-cron'
 import { getIO } from './socketio'
+import * as _ from 'underscore'
 
 import './server'
 
@@ -14,7 +15,14 @@ const job = async () => {
 
   // Stream #AskCovidIndia
   try {
-    const tweets = await Twitter.getTweet('#NTFDemoDay')
+    let buf = []
+    const tweets = await Twitter.getTweet('#AskCovidIndia')
+
+    const io = getIO()
+    io.sockets.on('connection', function(s){
+      setTimeout(() => s.emit('tweets', buf), 1000)
+    })
+
     tweets.on('tweet', async tweet => {
       const tweetId = tweet.id_str
       const tweetText = tweet.extended_tweet ? tweet.extended_tweet.full_text : tweet.text
@@ -22,8 +30,6 @@ const job = async () => {
       const userName = tweet.user.name
       const userScreenName = tweet.user.screen_name
 
-
-      // console.log(tweet)
       const url = `https://twitter.com/${userScreenName}/status/${tweetId}`
       const fields = {
         followers: userFollowers,
@@ -34,6 +40,10 @@ const job = async () => {
         id: tweetId,
         url: url,
       }
+
+      buf.push(fields)
+      buf = _.last(buf, 10)
+      // console.log(buf)
 
       const io = getIO()
       if (io) io.emit('tweet', fields)
