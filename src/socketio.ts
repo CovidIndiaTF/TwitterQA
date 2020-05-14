@@ -9,6 +9,7 @@ export const init = (s: Server) => {
   io = ioserver(s, {
     // path: '/test',
     serveClient: false,
+    origins	'*',
 
     // below are engine.IO options
     pingInterval: 10000,
