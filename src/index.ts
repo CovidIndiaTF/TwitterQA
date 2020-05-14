@@ -3,47 +3,46 @@ import Telegram from './lib/telegram'
 import Airtable from './lib/airtables'
 import checkUnansweredTweets from './checkUnansweredTweets'
 import * as cron from 'node-cron'
+import { getIO } from './socketio'
 
 import './server'
 
 
 const job = async () => {
   // Cron script to post the responses
-  cron.schedule('*/10 * * * * *', checkUnansweredTweets)
+  // cron.schedule('*/10 * * * * *', checkUnansweredTweets)
 
   // Stream #AskCovidIndia
-  const tweets = await Twitter.getTweet('#AskCovidIndiaTF')
-  tweets.on('tweet', async tweet => {
-    const tweetId = tweet.id_str
-    const tweetText = tweet.extended_tweet ? tweet.extended_tweet.full_text : tweet.text
-    const userFollowers = tweet.user.followers_count
-    const userName = tweet.user.name
-    const userScreenName = tweet.user.screen_name
+  try {
+    const tweets = await Twitter.getTweet('#NTFDemoDay')
+    tweets.on('tweet', async tweet => {
+      const tweetId = tweet.id_str
+      const tweetText = tweet.extended_tweet ? tweet.extended_tweet.full_text : tweet.text
+      const userFollowers = tweet.user.followers_count
+      const userName = tweet.user.name
+      const userScreenName = tweet.user.screen_name
 
-    if (tweet.retweeted) return
-    if (tweet.is_quote_status || tweet.retweeted_status) return
 
-    const url = `https://twitter.com/${userScreenName}/status/${tweetId}`
-    const fields = {
-      'Author Followers Count': userFollowers,
-      'Tweet Author Handle': userScreenName,
-      'Tweet Author Name': userName,
-      'Tweet Copy': tweetText,
-      'Tweet Id': tweetId,
-      'Tweet URL': url,
-    }
+      // console.log(tweet)
+      const url = `https://twitter.com/${userScreenName}/status/${tweetId}`
+      const fields = {
+        followers: userFollowers,
+        author: userScreenName,
+        name: userName,
+        avatar: tweet.user.profile_image_url_https,
+        tweet: tweetText,
+        id: tweetId,
+        url: url,
+      }
 
-    // inform the telegram group
-    console.log(fields)
-    await Telegram.sendMessage(
-      '-1001385686385',
-      `New tweet: ${userScreenName} (${userFollowers} followers)\n` +
-      `URL: ${url}\n` +
-      `Text: ${tweetText}`
-    ).catch(console.log)
+      const io = getIO()
+      if (io) io.emit('tweet', fields)
 
-    Airtable('TweetQuestions').create([{ fields }])
-  })
+      // Airtable('TweetQuestions').create([{ fields }])
+    })
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 job()

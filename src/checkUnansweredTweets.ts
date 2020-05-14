@@ -22,6 +22,7 @@ export default async () => {
     .select({ filterByFormula: query })
     .eachPage((records, fetchNextPage) => {
 
+
       // iterate through every record
       Bluebird.mapSeries(records, async record => {
         console.log('posting tweet response for', record.id)
