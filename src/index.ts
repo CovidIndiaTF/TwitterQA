@@ -16,7 +16,7 @@ const job = async () => {
   // Stream #AskCovidIndia
   try {
     let buf = []
-    const tweets = await Twitter.getTweet('#AskCovidIndia')
+    const tweets = await Twitter.getTweet('#NTFDemoDay')
 
     const io = getIO()
     io.sockets.on('connection', function(s){
