@@ -15,7 +15,6 @@ const job = async () => {
 
   // Stream #AskCovidIndia
   try {
-    let buf = []
     const tweets = await Twitter.getTweet('#NTFDemoDay')
 
     tweets.on('tweet', async tweet => {
@@ -24,6 +23,11 @@ const job = async () => {
       const userFollowers = tweet.user.followers_count
       const userName = tweet.user.name
       const userScreenName = tweet.user.screen_name
+
+      if (tweet.retweeted) return
+      if (tweet.is_quote_status || tweet.retweeted_status) return
+
+      console.log(tweet)
 
       const url = `https://twitter.com/${userScreenName}/status/${tweetId}`
       const fields = {
@@ -37,7 +41,6 @@ const job = async () => {
       }
 
       console.log(fields)
-
       Airtable('TweetQuestions').create([{ fields }])
     })
   } catch (e) {
