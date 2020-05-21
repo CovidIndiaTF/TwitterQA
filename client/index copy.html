@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Twitter Feed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="row">
+    <div class="col-md-6 col-xs-12 col-md-offset-3">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Tweet using #NTFDemoDay</h3>
+        </div>
+        <div class="panel-body">
+          <div class="clearfix"></div>
+          <hr class="margin-bottom-10">
+          <ul class="list-group list-group-dividered list-group-full" id="fuck">
+
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+<script>
+  var socket = io();
+  var tweets = []
+  socket.on('tweet', function (e) {
+    tweets.push(e)
+
+    var html = ''
+
+    for (var i = 0; i < tweets.length && i < 20; i++) {
+      var j = tweets.length - 1 - i
+      var temp = '<li class="list-group-item">\
+                <a href="' + tweets[j].url + '">\
+                <div class="media">\
+                  <div class="media-left">\
+                    <a class="avatar avatar-busy" href="javascript:void(0)">\
+                      <img src="' + tweets[j].avatar + '" alt="...">\
+                      <i></i>\
+                    </a>\
+                  </div>\
+                  <div class="media-body">\
+                    <h4 class="media-heading">@' + tweets[j].author + '</h4>\
+                    <div>' + tweets[j].tweet + '</div>\
+                  </div>\
+                </div>\
+                </a>\
+              </li>';
+      html += temp;
+    }
+
+    var f = document.getElementById('fuck')
+    f.innerHTML = html
+  })
+
+  socket.once('tweets', function (e) {
+    tweets = e
+
+    var html = ''
+
+    for (var i = 0; i < tweets.length && i < 20; i++) {
+      var j = tweets.length - 1 - i
+      var temp = '<li class="list-group-item">\
+                <a href="' + tweets[j].url + '">\
+                <div class="media">\
+                  <div class="media-left">\
+                    <a class="avatar avatar-busy" href="javascript:void(0)">\
+                      <img src="' + tweets[j].avatar + '" alt="...">\
+                      <i></i>\
+                    </a>\
+                  </div>\
+                  <div class="media-body">\
+                    <h4 class="media-heading">@' + tweets[j].author + '</h4>\
+                    <div>' + tweets[j].tweet + '</div>\
+                  </div>\
+                </div>\
+                </a>\
+              </li>';
+      html += temp;
+    }
+
+    var f = document.getElementById('fuck')
+    f.innerHTML = html
+  })
+</script>
+</body>
+</html>
