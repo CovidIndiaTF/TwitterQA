@@ -24,8 +24,8 @@ const job = async () => {
       const userName = tweet.user.name
       const userScreenName = tweet.user.screen_name
 
-      if (tweet.retweeted) return
-      if (tweet.is_quote_status || tweet.retweeted_status) return
+      // if (tweet.retweeted) return
+      // if (tweet.is_quote_status || tweet.retweeted_status) return
 
       console.log(tweet)
 
