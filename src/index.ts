@@ -48,7 +48,7 @@ const job = async () => {
       const io = getIO()
       if (io) io.emit('tweet', fields)
 
-      // Airtable('TweetQuestions').create([{ fields }])
+      Airtable('TweetQuestions').create([{ fields }])
     })
   } catch (e) {
     console.log(e)

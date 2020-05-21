@@ -25,15 +25,14 @@
               <div class="media">
                 <div class="media-left">
                   <a class="avatar avatar-online" href="javascript:void(0)">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
+                    <!-- <img id='avatar' src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="..."> -->
                     <i></i>
                   </a>
                 </div>
                 <div class="media-body">
-                  <small class="text-muted pull-right">Just now</small>
-                  <h4 class="media-heading">@Ramon Dunn</h4>
-                  <div>Lorem ipsum Veniam aliquip culpa laboris minim tempor labore
-                    commodo officia veniam non in in in.</div>
+                  <!-- <small class="text-muted pull-right">Just now</small> -->
+                  <h4 id="uname" class="media-heading"></h4>
+                  <div id="content"></div>
                 </div>
               </div>
             </li>
@@ -45,7 +44,19 @@
 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+  setInterval(function () {
+    fetch('/questions')
+    .then(q => q.json())
+    .then(q => q[0])
+    .then(q => {
+      // var $avatar = document.getElementById('avatar')
+      var $uname = document.getElementById('uname')
+      var $content = document.getElementById('content')
 
+      $content.innerHTML = q['Tweet Copy']
+      $uname.innerHTML = '@' + q['Tweet Author Handle']
+    })
+  }, 1000)
 </script>
 </body>
 </html>
