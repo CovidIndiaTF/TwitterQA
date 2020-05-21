@@ -18,11 +18,6 @@ const job = async () => {
     let buf = []
     const tweets = await Twitter.getTweet('#NTFDemoDay')
 
-    const io = getIO()
-    io.sockets.on('connection', function(s){
-      setTimeout(() => s.emit('tweets', buf), 1000)
-    })
-
     tweets.on('tweet', async tweet => {
       const tweetId = tweet.id_str
       const tweetText = tweet.extended_tweet ? tweet.extended_tweet.full_text : tweet.text
@@ -32,21 +27,14 @@ const job = async () => {
 
       const url = `https://twitter.com/${userScreenName}/status/${tweetId}`
       const fields = {
-        followers: userFollowers,
-        author: userScreenName,
-        name: userName,
-        avatar: tweet.user.profile_image_url_https,
-        tweet: tweetText,
-        id: tweetId,
-        url: url,
+        'Author Followers Count': userFollowers,
+        'Tweet Author Handle': userScreenName,
+        'Tweet Author Name': userName,
+        'Tweet Copy': tweetText,
+        'Tweet Id': tweetId,
+        'Tweet URL': url,
+        'Avatar': tweet.user.profile_image_url_https
       }
-
-      buf.push(fields)
-      buf = _.last(buf, 10)
-      // console.log(buf)
-
-      const io = getIO()
-      if (io) io.emit('tweet', fields)
 
       Airtable('TweetQuestions').create([{ fields }])
     })
