@@ -36,6 +36,8 @@ const job = async () => {
         'Avatar': tweet.user.profile_image_url_https
       }
 
+      console.log(fields)
+
       Airtable('TweetQuestions').create([{ fields }])
     })
   } catch (e) {
